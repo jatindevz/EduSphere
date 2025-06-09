@@ -25,16 +25,7 @@ const Dashboard = () => {
             <h1 className="text-3xl font-bold mb-2">Dashboard Overview</h1>
             <p className="text-white/70">Welcome back!</p>
           </div>
-          <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition-colors duration-300 flex items-center">
-              <Calendar className="h-5 w-5 mr-2" />
-              <span>Calendar</span>
-            </button>
-            <button className="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors duration-300 flex items-center">
-              <Settings className="h-5 w-5 mr-2" />
-              <span>Settings</span>
-            </button>
-          </div>
+          
         </div>
 
           <div>
@@ -43,11 +34,8 @@ const Dashboard = () => {
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold flex items-center space-x-2">
                 <BookOpen className="h-5 w-5 text-cyan-400" />
-                <span>Academic Branches</span>
+                <span>Branches</span>
               </h2>
-              <button className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                View All
-              </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

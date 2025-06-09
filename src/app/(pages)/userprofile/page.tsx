@@ -1,27 +1,34 @@
 'use client'
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import { Settings, BookOpen, Clock, LogOut } from 'lucide-react';
+import { Settings, Star, MessageCircle, Clock, LogOut } from 'lucide-react';
 import Link from "next/link";
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 
 const Profile = () => {
+  const [Feedback, setFeedback] = React.useState("");
   const router = useRouter();
   const { data: session } = useSession();
-    const handlelogout = () => {
-      signOut()
-      router.replace("/")
-    }
-
-  // Mock data for additional sections
-  const courses = [
-    { id: 1, title: 'Advanced React Development', progress: 85 },
-    { id: 2, title: 'Tailwind CSS Mastery', progress: 65 },
-    { id: 3, title: 'Next.js Fundamentals', progress: 42 }
-  ];
-
+  const handlelogout = () => {
+    signOut()
+    router.replace("/")
+  }
 
 
   return (
@@ -33,8 +40,6 @@ const Profile = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Header */}
-
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Profile Card */}
@@ -92,34 +97,103 @@ const Profile = () => {
               </Link>
             </div>
 
-            {/* Courses Progress */}
+
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold flex items-center space-x-2">
-                  <BookOpen className="h-6 w-6 text-cyan-400" />
-                  <span>Your Courses</span>
-                </h3>
-                <button className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                  View All
-                </button>
+
+              <p className="text-white mb-4 text-sm">
+                <i> &quot;Struggling to find study resources? We've gathered the best from the internet—so you don't have to.&quot;</i>
+              </p>
+
+
+              <div className="flex items-center gap-3">
+                {/* Feedback Dialog */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 flex items-center gap-2">
+                      <MessageCircle className="h-4 w-4" />
+                      Feedback
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md bg-slate-900 border-slate-700">
+                    <DialogHeader>
+                      <DialogTitle className="text-cyan-400">Share Feedback</DialogTitle>
+                      <DialogDescription className="text-slate-400">
+                        We'd love to hear your thoughts!
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <Textarea
+                        placeholder="What do you like or what can we improve?"
+                        className="min-h-[120px] bg-slate-800 border-slate-700 text-white focus:border-cyan-500 focus:ring-cyan-500/50"
+                      />
+                      <Button
+                        type="submit"
+                        className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700"
+                      >
+                        Submit Feedback
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
+                {/* Recommendation Dialog */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 hover:border-white/30 transition-all duration-300 flex items-center gap-2">
+                      <Star className="h-4 w-4" />
+                      Recommend Resource
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-lg bg-slate-900 border-slate-700">
+                    <DialogHeader>
+                      <DialogTitle className="text-amber-400">Suggest a Resource</DialogTitle>
+                      <DialogDescription className="text-slate-400">
+                        Share helpful links with the community
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="title" className="text-slate-300">
+                          Title
+                        </Label>
+                        <Input
+                          id="title"
+                          placeholder="Resource name"
+                          className="bg-slate-800 border-slate-700 text-white focus:border-amber-500 focus:ring-amber-500/50"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="url" className="text-slate-300">
+                          URL
+                        </Label>
+                        <Input
+                          id="url"
+                          placeholder="https://example.com"
+                          className="bg-slate-800 border-slate-700 text-white focus:border-amber-500 focus:ring-amber-500/50"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="notes" className="text-slate-300">
+                          Notes (optional)
+                        </Label>
+                        <Textarea
+                          id="notes"
+                          placeholder="Why do you recommend this?"
+                          className="bg-slate-800 border-slate-700 text-white focus:border-amber-500 focus:ring-amber-500/50"
+                        />
+                      </div>
+                      <Button
+                        type="submit"
+                        className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 mt-2"
+                      >
+                        Submit Recommendation
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
 
-              <div className="space-y-4">
-                {courses.map(course => (
-                  <div key={course.id} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-cyan-500/30 transition-all duration-300">
-                    <div className="flex justify-between items-center mb-2">
-                      <h4 className="font-medium">{course.title}</h4>
-                      <span className="text-sm text-cyan-400">{course.progress}%</span>
-                    </div>
-                    <div className="w-full bg-white/10 rounded-full h-2.5">
-                      <div
-                        className="bg-gradient-to-r from-cyan-400 to-blue-500 h-2.5 rounded-full"
-                        style={{ width: `${course.progress}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+
             </div>
           </div>
         </div>
