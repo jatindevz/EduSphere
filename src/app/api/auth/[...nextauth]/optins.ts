@@ -60,10 +60,12 @@ export const authOptions: NextAuthOptions = {
                         isSubscribtionisActive: user.isSubscribtionisActive,
 
                     };
-                } catch (error: any) {
-                    console.log(" login failed",error);
-                    
-                    throw new Error(error); 
+                } catch (error: unknown) {
+                    if (error instanceof Error) {
+                        console.log("login failed", error.message);
+                        throw new Error(error.message);
+                    }
+                    throw new Error("Unknown error occurred");
                 }
             },
         }) 
