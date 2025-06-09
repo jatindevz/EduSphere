@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookOpen, Calendar, Settings } from 'lucide-react'
+import { BookOpen} from 'lucide-react'
 import DrawerDemo from '@/components/Drawer'
 import { gate_subjects } from '@/data/data'
 const Dashboard = () => {

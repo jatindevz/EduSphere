@@ -9,10 +9,8 @@ import Image from 'next/image';
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -22,7 +20,6 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 
 const Profile = () => {
-  const [Feedback, setFeedback] = React.useState("");
   const router = useRouter();
   const { data: session } = useSession();
   const handlelogout = () => {
@@ -118,7 +115,7 @@ const Profile = () => {
                     <DialogHeader>
                       <DialogTitle className="text-cyan-400">Share Feedback</DialogTitle>
                       <DialogDescription className="text-slate-400">
-                        We'd love to hear your thoughts!
+                        We&apos;d love to hear your thoughts!
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
