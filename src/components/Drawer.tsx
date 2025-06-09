@@ -1,8 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { X, ChevronRight, BookOpen, Download, Edit, Plus } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { X, ChevronRight, BookOpen } from "lucide-react"
 import DrawerDialogDemo from "./Dilogbox"
 import { Button } from "@/components/ui/button"
 import {

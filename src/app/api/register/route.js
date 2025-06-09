@@ -18,7 +18,7 @@ export async function POST(request) {
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return NextResponse.json({  error: "User already exists" }, { status: 400 });
+            return NextResponse.json({  message: "User already exists" }, { status: 400 });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -38,6 +38,6 @@ export async function POST(request) {
 
     } catch (error) {
         console.log('Error in register server:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }

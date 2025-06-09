@@ -5,6 +5,7 @@ import { Settings, BookOpen, Clock, LogOut } from 'lucide-react';
 import Link from "next/link";
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Profile = () => {
   const router = useRouter();
@@ -41,8 +42,10 @@ const Profile = () => {
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
               <div className="flex flex-col items-center">
                 <div className="relative mb-4">
-                  <img
-                    src={session?.user?.image || '/default-avatar.png'}
+                  <Image
+                    width={128}
+                    height={128}
+                    src={session?.user?.image || '/default-avatar.jpg'}
                     alt="Profile"
                     className="w-32 h-32 rounded-full object-cover border-4 border-cyan-500/30"
                   />
@@ -80,7 +83,7 @@ const Profile = () => {
             {/* Welcome Card */}
             <div className="bg-gradient-to-r from-cyan-500/20 to-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-cyan-500/30 shadow-lg">
               <h2 className="text-2xl font-bold mb-2">Welcome back, {session?.user?.username || 'User'}!</h2>
-              <p className="text-white/80 mb-4">You're making great progress in your learning journey. Keep it up!</p>
+              <p className="text-white/80 mb-4">You&apos;re making great progress in your learning journey. Keep it up!</p>
               <Link href="/dashboard">
                 <button className="px-6 py-2 rounded-xl bg-white text-slate-900 font-semibold hover:bg-slate-200 transition-all duration-300">
                   Go to Dashboard

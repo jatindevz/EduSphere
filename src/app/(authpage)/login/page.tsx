@@ -1,3 +1,4 @@
+// src/app/(authpage)/login/page.tsx
 'use client'
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from 'lucide-react';
@@ -20,7 +21,7 @@ const LoginSignupPages = () => {
 
   const router = useRouter();
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -28,7 +29,7 @@ const LoginSignupPages = () => {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission here
     if(currentPage === 'login') {
@@ -40,7 +41,7 @@ const LoginSignupPages = () => {
         })
 
         if (res?.ok) {
-          router.replace("/dashboard")
+          router.replace("/userprofile")
         }
       } catch (error) {
         console.log(" login failed",error);
@@ -56,7 +57,7 @@ const LoginSignupPages = () => {
 
         if (res.status === 201) {
           console.log(" signup success",res.data);
-          // router.replace("/dashboard")
+          router.replace("userprofile")
         }
       } catch (error) {
         console.log(" signup failed",error);
@@ -136,6 +137,7 @@ const LoginSignupPages = () => {
         </div>
 
         {/* Form Container */}
+        <form onSubmit={handleSubmit}>
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
           <div className="space-y-6">
             {/* Full Name (Signup only) */}
@@ -271,7 +273,7 @@ const LoginSignupPages = () => {
 
             {/* Submit Button */}
             <button
-              onClick={handleSubmit}
+              type="submit"
               className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all duration-300 flex items-center justify-center group"
             >
               {currentPage === 'login' ? 'Sign In' : 'Create Account'}
@@ -291,7 +293,8 @@ const LoginSignupPages = () => {
               </button>
             </p>
           </div>
-        </div>
+          </div>
+        </form>
 
         {/* Back to Home */}
         <div className="mt-8 text-center">

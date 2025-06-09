@@ -17,11 +17,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 type Props = {
-  code: any;
+  code: string;
 };
 
 export default function DrawerDialogDemo({ code }: Props) {
-  const resources = data[code];
   return (
     <Dialog>
       <DialogTrigger asChild>

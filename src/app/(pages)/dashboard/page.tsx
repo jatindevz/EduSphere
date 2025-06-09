@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookOpen, Calendar, FileText, Users, Settings } from 'lucide-react'
+import { BookOpen, Calendar, Settings } from 'lucide-react'
 import DrawerDemo from '@/components/Drawer'
 import { gate_subjects } from '@/data/data'
 const Dashboard = () => {
@@ -23,7 +23,7 @@ const Dashboard = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold mb-2">Dashboard Overview</h1>
-            <p className="text-white/70">Welcome back! Here's what's happening today.</p>
+            <p className="text-white/70">Welcome back!</p>
           </div>
           <div className="flex items-center space-x-4">
             <button className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition-colors duration-300 flex items-center">

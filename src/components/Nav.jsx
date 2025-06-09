@@ -111,26 +111,23 @@ const Nav = () => {
           </div>
         ) : (
           <nav className="flex items-center space-x-4 sm:space-x-6">
+              {
+                isPremium && (
+                  <Link 
+                    href="/premium" 
+                    className="hidden sm:flex items-center space-x-1 text-white/80 hover:text-cyan-400 transition-colors duration-300 group"
+                  >
+                    <Crown className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                    <span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent font-medium">
+                      Premium
+                    </span>
+                  </Link>
+                )
+            }
+            
+            
             <Link 
-              href="/features" 
-              className="hidden sm:inline text-white/80 hover:text-cyan-400 transition-colors duration-300 hover:-translate-y-0.5"
-            >
-              Features
-            </Link>
-            <Link 
-              href="/pricing" 
-              className="hidden sm:inline text-white/80 hover:text-cyan-400 transition-colors duration-300 hover:-translate-y-0.5"
-            >
-              Pricing
-            </Link>
-            <Link 
-              href="/login" 
-              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-white/90 hover:text-white hover:bg-white/10 transition-colors duration-300 border border-white/20"
-            >
-              Login
-            </Link>
-            <Link 
-              href="/register" 
+                href="/login" 
               className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-medium transition-all duration-300 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30"
             >
               Register

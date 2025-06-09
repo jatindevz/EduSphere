@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   // Redirect logged-in users away from login or register pages
-  if (token && (pathname === '/login' || pathname === '/register' || pathname === '/')) {
+  if (token && (pathname === '/login'  || pathname === '/')) {
     return NextResponse.redirect(new URL('/userprofile', req.url))
   }
 
@@ -21,5 +21,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/login', '/register', '/dashboard/:path*', '/userprofile/:path*' , '/']
+  matcher: ['/login', '/dashboard/:path*', '/userprofile/:path*' , '/']
 }
