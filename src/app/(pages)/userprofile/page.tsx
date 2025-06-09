@@ -98,7 +98,7 @@ const Profile = () => {
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
 
               <p className="text-white mb-4 text-sm">
-                <i> &quot;Struggling to find study resources? We've gathered the best from the internet—so you don't have to.&quot;</i>
+                <i> &quot;Struggling to find study resources? We&apos;ve gathered the best from the internet—so you don&apos;t have to.&quot;</i>
               </p>
 
 
