@@ -21,12 +21,6 @@ const Profile = () => {
     { id: 3, title: 'Next.js Fundamentals', progress: 42 }
   ];
 
-  const achievements = [
-    { id: 1, title: 'Fast Learner', icon: '🏅', description: 'Completed 3 courses in one month' },
-    { id: 2, title: 'Perfect Score', icon: '⭐', description: 'Scored 100% on 5 quizzes' },
-    { id: 3, title: 'Early Bird', icon: '🌅', description: 'Logged in 10 days in a row before 8am' }
-  ];
-
 
 
   return (
@@ -124,53 +118,6 @@ const Profile = () => {
                 ))}
               </div>
             </div>
-
-            {/* Achievements */}
-            {/* <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold flex items-center space-x-2">
-                  <Award className="h-6 w-6 text-yellow-400" />
-                  <span>Your Achievements</span>
-                </h3>
-                <button className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                  View All
-                </button>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {achievements.map(achievement => (
-                  <div key={achievement.id} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-yellow-500/30 transition-all duration-300 text-center">
-                    <div className="text-4xl mb-2">{achievement.icon}</div>
-                    <h4 className="font-medium mb-1">{achievement.title}</h4>
-                    <p className="text-sm text-white/70">{achievement.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div> */}
-
-            {/* Recent Activity */}
-            {/* <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-lg">
-              <h3 className="text-xl font-bold mb-6 flex items-center space-x-2">
-                <Clock className="h-6 w-6 text-purple-400" />
-                <span>Recent Activity</span>
-              </h3>
-              
-              <div className="space-y-4">
-                {[
-                  { id: 1, action: 'Completed quiz', course: 'Advanced React', time: '2 hours ago', icon: '✅' },
-                  { id: 2, action: 'Submitted assignment', course: 'Tailwind CSS', time: '1 day ago', icon: '📝' },
-                  { id: 3, action: 'Started new course', course: 'Next.js Fundamentals', time: '3 days ago', icon: '🎯' }
-                ].map(activity => (
-                  <div key={activity.id} className="flex items-start space-x-3">
-                    <div className="text-xl mt-1">{activity.icon}</div>
-                    <div>
-                      <p className="font-medium">{activity.action} in {activity.course}</p>
-                      <p className="text-sm text-white/60">{activity.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
