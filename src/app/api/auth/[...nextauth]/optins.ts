@@ -6,11 +6,14 @@ import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/database";
 import User from "@/models/user.model";
 
-
-type CredentialsPros = {
+type UserPros = {
+    id: string;
+    _id: string;
+    username: string;
     email: string;
-    password: string;
-}
+    isVerified: boolean;
+    isSubscribtionisActive: boolean;
+};
 
 
 
@@ -23,7 +26,7 @@ export const authOptions: NextAuthOptions = {
                 email: { label: "Email", type: "email" },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<any> {
+            async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<UserPros | null> {
                 await dbConnect();
                 try {
                     if (!credentials) {
@@ -33,7 +36,7 @@ export const authOptions: NextAuthOptions = {
 
                     const email = credentials?.email;
                     const password = credentials?.password;
-                    
+
                     const user = await User.findOne({ email });
 
                     if (!user) {
@@ -44,11 +47,19 @@ export const authOptions: NextAuthOptions = {
                     // }
 
                     const isPasswordValid = await bcrypt.compare(password, user.password);
-                    if (isPasswordValid) {
-                        return user;
-                    } else {
+                    if(!isPasswordValid) {
                         throw new Error("Invalid password");
                     }
+
+                    return {
+                        id: user.id,
+                        _id: user._id?.toString() ?? '',
+                        username: user.username,
+                        email: user.email,
+                        isVerified: user.isVerified,
+                        isSubscribtionisActive: user.isSubscribtionisActive,
+
+                    };
                 } catch (error: any) {
                     console.log(" login failed",error);
                     
