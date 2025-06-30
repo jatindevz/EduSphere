@@ -13,12 +13,12 @@ export async function POST(request) {
 
         if (!username || !email || !password) {
             console.log("All fields are required");
-            return NextResponse.json({ message: "All fields are required" ,error: "All fields are required" }, { status: 400 });
+            return NextResponse.json({ message: "All fields are required", error: "All fields are required" }, { status: 400 });
         }
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return NextResponse.json({  message: "User already exists" }, { status: 400 });
+            return NextResponse.json({ message: "User already exists" }, { status: 400 });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,6 +27,7 @@ export async function POST(request) {
             username,
             email,
             password: hashedPassword,
+            createdAt: new Date().toISOString()
         });
 
         await user.save();
