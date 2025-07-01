@@ -1,7 +1,7 @@
 import React from 'react'
 import { BookOpen} from 'lucide-react'
 import DrawerDemo from '@/components/Drawer'
-import { gate_subjects, otherdata } from '@/data/data'
+import { gate_subjects } from '@/data/data'
 import DrawerDialogDemo from '@/components/Dilogbox'
 const Dashboard = () => {
   const branches = [
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {Others .map((branch, idx) => (
-                <div key={branch.id} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 group">
+                <div key={branch.id || idx} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-cyan-500/30 transition-all duration-300 group">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="font-bold text-lg group-hover:text-cyan-400 transition-colors duration-300">
                       {branch.name}
@@ -82,7 +82,7 @@ const Dashboard = () => {
                     </span>
                   </div>
                 <DrawerDialogDemo code={"1"} />
-                  {/* <DrawerDemo branchname={branch.name} subject={otherdata[idx].subjects} /> */}
+                  
                 </div>
               ))}
             </div>
