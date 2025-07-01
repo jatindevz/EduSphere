@@ -3,6 +3,7 @@
 import * as React from "react"
 import { X, ChevronRight, BookOpen } from "lucide-react"
 import DrawerDialogDemo from "./Dilogbox"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import {
   Drawer,
@@ -59,7 +60,8 @@ export default function DrawerDemo({ subject, branchname }: Props) {
           </DrawerHeader>
 
           {/* Subjects List */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-6 gap-3">
+          <ScrollArea className="h-[50vh] mt-4 " >
+          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-6 gap-3 ">
             {subject.map((item, index) => (
               <div
                 key={index}
@@ -75,15 +77,14 @@ export default function DrawerDemo({ subject, branchname }: Props) {
               </div>
             ))}
           </div>
+          </ScrollArea>
 
 
           {/* Footer with action buttons */}
           <DrawerFooter className="px-0">
             <div className="flex justify-end space-x-3">
               <DrawerClose asChild>
-                <Button variant="outline" className="border-slate-700 hover:bg-slate-800 text-slate-300 hover:text-white">
-                  Cancel
-                </Button>
+                
               </DrawerClose>
             </div>
           </DrawerFooter>

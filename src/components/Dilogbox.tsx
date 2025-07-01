@@ -47,8 +47,8 @@ export default function DrawerDialogDemo({ code }: Props) {
 function ProfileForm({ code }: Props) {
   if (!data[code]) {
     return <div>
-      <div className="text-white">Resources are not available</div>;
-    </div>;
+      <div className="text-white">Resources are not available</div>
+    </div>
   }
   return (
     <div>

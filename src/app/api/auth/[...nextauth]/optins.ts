@@ -42,9 +42,7 @@ export const authOptions: NextAuthOptions = {
                     if (!user) {
                         throw new Error("User not found");
                     }
-                    // if(user.isVerified === false) {
-                    //     throw new Error("User is not verified, verify your email");
-                    // }
+
 
                     const isPasswordValid = await bcrypt.compare(password, user.password);
                     if(!isPasswordValid) {
@@ -87,6 +85,7 @@ export const authOptions: NextAuthOptions = {
                 token.isVerified = user.isVerified
                 token.username = user.username
                 token.email = user.email
+                
 
             }
             return token

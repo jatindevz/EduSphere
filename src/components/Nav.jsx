@@ -89,13 +89,7 @@ const Nav = () => {
                       <User className="h-4 w-4 mr-3" />
                       Your Profile
                     </Link>
-                    <Link 
-                      href="/settings" 
-                      className="flex items-center px-4 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200"
-                    >
-                      {/* <Settings className="h-4 w-4 mr-3" /> */}
-                      Settings
-                    </Link>
+                    
                   </div>
                   <div className="py-1 border-t border-white/10">
                     <button className="flex items-center w-full px-4 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white transition-colors duration-200"

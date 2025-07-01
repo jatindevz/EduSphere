@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import { Settings, Star, MessageCircle, Clock, LogOut } from 'lucide-react';
+import {  Star, MessageCircle, LogOut } from 'lucide-react';
 import Link from "next/link";
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
@@ -51,28 +51,13 @@ const Profile = () => {
                     alt="Profile"
                     className="w-32 h-32 rounded-full object-cover border-4 border-cyan-500/30"
                   />
-                  <button className="absolute bottom-2 right-2 bg-cyan-500 hover:bg-cyan-600 p-2 rounded-full shadow-md transition-colors duration-300">
-                    <Settings className="h-4 w-4" />
-                  </button>
                 </div>
                 <h2 className="text-2xl font-bold text-center mb-1">{session?.user?.name || session?.user?.username || 'User'}</h2>
                 <p className="text-white/70 mb-6">{session?.user?.email}</p>
 
-                <div className="w-full space-y-4">
+               
 
-
-                  <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg">
-                    <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400">
-                      <Clock className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-white/70">Member Since</p>
-                      <p className="font-medium">Jan 2023</p>
-                    </div>
-                  </div>
-                </div>
-
-                <button className="w-full mt-6 flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300" onClick={handlelogout}>
+                <button className="w-full mt-4 flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300" onClick={handlelogout}>
                   <LogOut className="h-5 w-5" />
                   <span>Sign Out</span>
                 </button>

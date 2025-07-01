@@ -891,4 +891,31 @@ const data: Record<string, SubjectResources> = {
   }
 };
 
-export { gate_subjects, data };
+const otherdata: Record<string, SubjectResources> = {
+  webdev : {
+    youtube_playlists: [
+      {
+        id: 1,
+        title: "Web development - Complete Course",
+        url: "https://www.youtube.com/playlist?list=PLd_tsS2vZoRfXJZ5QZ5XQ9YkZ1X5Q1Z1X"
+      }
+    ],
+    pdfs: [
+      {
+        id: 1,
+        title: "Web development - R.C. Hibbeler",
+        url: "https://archive.org/details/EngineeringMechanicsStatics14thEdition"
+      }
+    ],
+    other_resources: [
+      {
+        id: 1,
+        title: "Web development Tutorials",
+        url: "https://www.engineeringtoolbox.com/statics-t_3.html"
+      }
+    ]
+  }
+}
+
+
+export { gate_subjects, data, otherdata };
