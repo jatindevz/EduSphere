@@ -5,6 +5,7 @@ import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 const LoginSignupPages = () => {
   const [currentPage, setCurrentPage] = useState('login');
@@ -13,7 +14,6 @@ const LoginSignupPages = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
     fullName: '',
     agreeTerms: false,
     rememberMe : false
@@ -31,40 +31,60 @@ const LoginSignupPages = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission here
-    if(currentPage === 'login') {
+
+    const handleLogin = async () => {
       try {
         const res = await signIn("credentials", {
           redirect: false,
-          email : formData.email,
-          password : formData.password
-        })
+          email: formData.email,
+          password: formData.password,
+        });
 
         if (res?.ok) {
-          router.replace("/userprofile")
+          router.replace("/userprofile");
+          toast.success("Login Success");
+        } else {
+          toast.error("Login failed");
         }
       } catch (error) {
-        console.log(" login failed",error);
+        console.log("Login failed:", error);
+        toast.error("An error occurred during login");
       }
-    } else if (currentPage === 'signup') {
+    };
+
+    const handleSignup = async () => {
       const payload = {
         username: formData.fullName,
         email: formData.email,
         password: formData.password,
       };
+
       try {
-        const res = await axios.post("/api/register", payload)
+        const res = await axios.post("/api/register", payload);
 
         if (res.status === 201) {
-          console.log(" signup success",res.data);
-          router.replace("userprofile")
+          toast.success(res.data.message);
+          console.log("Signup success:", res.data);
+          handleLogin();
+        } else {
+          toast.error("Signup failed");
         }
       } catch (error) {
-        console.log(" signup failed",error);
+        console.log("Signup failed:", error);
+        toast.error("An error occurred during signup");
       }
+    };
+
+    // ⚠️ Important: await these calls to ensure errors are caught properly
+    if (currentPage === "login") {
+      await handleLogin();
+    } else if (currentPage === "signup") {
+      await handleSignup();
     }
+
     console.log(`${currentPage} form submitted:`, formData);
   };
+
 
 
   const switchPage = (page : string) => {
@@ -72,7 +92,6 @@ const LoginSignupPages = () => {
     setFormData({
       email: '',
       password: '',
-      confirmPassword: '',
       fullName: '',
       agreeTerms: false,
       rememberMe : false
@@ -203,73 +222,6 @@ const LoginSignupPages = () => {
               </div>
             </div>
 
-            {/* Confirm Password (Signup only) */}
-            {currentPage === 'signup' && (
-              <div>
-                <label className="block text-sm font-medium mb-2 text-white/80">
-                  Confirm Password
-                </label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/50" />
-                  <input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className="w-full pl-10 pr-10 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-white/50 transition-all duration-300"
-                    placeholder="Confirm your password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white/80 transition-colors duration-300"
-                  >
-                    {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Remember Me / Forgot Password (Login) or Terms Agreement (Signup) */}
-            <div className="flex items-center justify-between">
-              {currentPage === 'login' ? (
-                <>
-                  <label className="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="rememberMe"
-                      checked={formData.rememberMe ?? false}
-                      onChange={handleInputChange}
-                      className="w-4 h-4 text-cyan-600 bg-white/10 border-white/30 rounded focus:ring-cyan-500 focus:ring-2"
-                    />
-                    <span className="ml-2 text-sm text-white/70">Remember me</span>
-                  </label>
-                  <button className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-                    Forgot password?
-                  </button>
-                </>
-              ) : (
-                <label className="flex items-start">
-                  <input
-                    type="checkbox"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms ?? false}
-                    onChange={handleInputChange}
-                    className="w-4 h-4 text-cyan-600 bg-white/10 border-white/30 rounded focus:ring-cyan-500 focus:ring-2 mt-0.5"
-                  />
-                  <span className="ml-2 text-sm text-white/70">
-                    I agree to the{' '}
-                    <button className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 underline">
-                      Terms of Service
-                    </button>{' '}
-                    and{' '}
-                    <button className="text-cyan-400 hover:text-cyan-300 transition-colors duration-300 underline">
-                      Privacy Policy
-                    </button>
-                  </span>
-                </label>
-              )}
-            </div>
 
             {/* Submit Button */}
             <button

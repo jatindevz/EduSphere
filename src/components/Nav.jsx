@@ -51,9 +51,9 @@ const Nav = () => {
               isPremium && (
                 <Link 
                   href="/premium" 
-                  className="hidden sm:flex items-center space-x-1 text-white/80 hover:text-cyan-400 transition-colors duration-300 group"
+                  className="hidden sm:flex items-center space-x-1   transition-colors duration-300 group"
                 >
-                  <Crown className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                  <Crown className="h-5 w-5 group-hover:scale-110 transition-transform duration-300 text-yellow-500" />
                   <span className="bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent font-medium">
                     Premium
                   </span>

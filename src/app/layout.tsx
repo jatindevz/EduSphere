@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import NProgressProvider from '@/components/NProgressProvider';
-
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: "EduSphere",
@@ -23,6 +23,7 @@ export default function RootLayout({
         <body>
           <NProgressProvider />
           {children}
+          <Toaster />
         </body>
       </AuthProvider>
     </html>
